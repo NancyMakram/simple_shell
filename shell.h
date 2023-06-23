@@ -110,6 +110,61 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
+/*help functions*/
+
+int _strcmp(char *s1, char *s2);
+char *starts_with(const char *haystack, const char *needle);
+char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
+char *_strdup(const char *str);
+void _puts(char *str);
+int _putchar(char c);
+
+
+/*builtin*/
+
+int _myexit(info_t *info);
+int _myhelp(info_t *info);
+int _myhistory(info_t *info);
+int unset_alias(info_t *info, char *str);
+int set_alias(info_t *info, char *str);
+int print_alias(list_t *node);
+int _myalias(info_t *info);
+
+/*errors*/
+
+void _eputs(char *str);
+int _eputchar(char c);
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
+int _erratoi(char *s);
+void print_error(info_t *info, char *estr);
+int print_d(int input, int fd);
+char *convert_number(long int num, int base, int flags);
+void remove_comments(char *buf);
+
+/*handler*/
+
+ssize_t input_buf(info_t *info, char **buf, size_t *len);
+ssize_t get_input(info_t *info);
+ssize_t read_buf(info_t *info, char *buf, size_t *i);
+int _getline(info_t *info, char **ptr, size_t *length);
+void sigintHandler(__attribute__((unused))int sig_num);
+
+/*interactive*/
+
+int interactive(info_t *info);
+int is_delim(char c, char *delim);
+int _isalpha(int c);
+
+/*chaim*/
+
+int is_chain(info_t *info, char *buf, size_t *p);
+void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len);
+int replace_alias(info_t *info);
+int replace_vars(info_t *info);
+int replace_string(char **old, char *new);
+
 
 /*_cd.c*/
 
@@ -167,6 +222,48 @@ int prompt(char **en);
 int find_env(list_t *env, char *str);
 int _unsetenv(list_t **env, char **str);
 int _setenv(list_t **env, char **str);
+
+/*strtow*/
+
+char **strtow(char *str, char *d);
+char **strtow2(char *str, char d);
+
+/*history*/
+
+char *get_history_file(info_t *info);
+int write_history(info_t *info);
+int read_history(info_t *info);
+int build_history_list(info_t *info, char *buf, int linecount);
+int renumber_history(info_t *info);
+
+/*cmd*/
+
+int is_cmd(info_t *info, char *path);
+char *dup_chars(char *pathstr, int start, int stop);
+char *find_path(info_t *info, char *pathstr, char *cmd);
+
+/*free*/
+
+int bfree(void **ptr);
+
+/*info*/
+
+void clear_info(info_t *info);
+void set_info(info_t *info, char **av);
+void free_info(info_t *info, int all);
+
+/*realloc*/
+
+char *_memset(char *s, char b, unsigned int n);
+void ffree(char **pp);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
+/*loop*/
+
+int hsh(info_t *info, char **av);
+int find_builtin(info_t *info);
+void find_cmd(info_t *info);
+void fork_cmd(info_t *info);
 
 
 #endif
