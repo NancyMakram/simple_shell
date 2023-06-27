@@ -258,8 +258,6 @@ int prompt(char **en);
 /*set_unset_env.c*/
 
 int find_env(list_t *env, char *str);
-int _unsetenv(list_t **env, char **str);
-int _setenv(list_t **env, char **str);
 
 
 /*history*/
