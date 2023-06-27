@@ -1,62 +1,109 @@
-#ifndef SHELL
-#define SHELL
+#ifndef SHELL_H
+#define SHELL_H
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/wait.h>
-#include <wait.h>
 #include <fcntl.h>
-#include <dirent.h>
+#include <sys/wait.h>
+#include <string.h>
+#include <limits.h>
 #include <signal.h>
 
+#define FALSE 0
+#define TRUE 1
+#define NEITHER 2
+#define MATCH 3
+#define PREFIX 4
+#define EXIT_SHELL 5
+#define SKIP_FORK 6
+#define DO_EXECVE 7
+
 /**
- * struct list - linked list for environmental variables
- * @var: holds environmental variable string
+ * struct Alias - singly linked list
+ * @name: name of alias
+ * @value: command that alias calls
  * @next: points to next node
  */
-typedef struct list
+typedef struct Alias
 {
-	char *var;
-	struct list *next;
+	char *name;
+	char *value;
+	struct Alias *next;
+} alias;
 
-} list_t;
+extern char **environ;
 
-/* function prototypes */
-int prompt(char **env);
+extern int status;
+
+extern int line_num;
+
+extern char *shell_name;
+
+int command_manager(char **args);
+
+int built_ins(char **args);
+
+int and_or(char **args, char operator, int last_compare);
+
+char *check_command(char **args);
+
+int execute_command(char **args);
+
+char *input_san(char *old_buf, size_t *old_size);
+
+int input_err_check(char *ptr);
+
+void err_message(char *arg0, char *arg1);
+
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-size_t get_line(char **str);
-int t_strlen(char *str, int pos, char delm);
-char *ignore_space(char *str);
-char **_str_tok(char *str, char *delm);
-char **c_str_tok(char *str, char *delm);
-char *_strcat(char *dest, char *src);
-char *_strdup(char *str);
-char *_strcpy(char *dest, char *src);
-int _strcmp(char *s1, char *s2);
-int _cd(char **str, list_t *env, int num);
-int built_in(char **token, list_t *env, int num, char **command);
-void non_interactive(list_t *env);
-char *_which(char *str, list_t *env);
-int __exit(char **s, list_t *env, int num, char **command);
-int _execve(char *argv[], list_t *env, int num);
-void free_double_ptr(char **str);
-void free_linked_list(list_t *list);
-int _env(char **str, list_t *env);
-char *get_env(char *str, list_t *env);
-list_t *env_linked_list(char **env);
-list_t *add_end_node(list_t **head, char *str);
-size_t print_list(list_t *h);
-int delete_nodeint_at_index(list_t **head, int index);
-int _unsetenv(list_t **env, char **str);
-int _setenv(list_t **env, char **str);
-int find_env(list_t *env, char *str);
-void not_found(char *str, int num, list_t *env);
-void cant_cd_to(char *str, int c_n, list_t *env);
-void illegal_number(char *str, int c_n, list_t *env);
-char *int_to_string(int num);
+
+int _getline(char **line_ptr, size_t *n, int file);
+
+char *check_for_vars(char *arg);
+
+int _strlen(char *str);
+
+char *_strdup(char *src);
+
+char *str_concat(char *s1, char *s2);
+
+int str_compare(char *s1, char *s2, int pref_or_match);
+
+char *get_array_element(char **array, char *element_name);
+
+char **make_array(char *str, char delim, char **if_sep);
+
+int list_len(char **list, char *entry);
+
+char **array_cpy(char **old_array, int new_size);
+
+int free_array(char **args);
+
+int _setenv(const char *name, const char *value);
+
+int _unsetenv(const char *name);
+
+int change_dir(char *name);
+
+int alias_func(char **args, int free);
+
+int free_aliases(alias *alias_ptr);
+
+int check_if_alias(char **args, alias *alias_ptr);
+
+int print_aliases(alias *alias_ptr);
+
+int print_alias_value(char *arg, alias *alias_ptr);
+
+int set_alias_value(char *arg, alias *alias_ptr, char *new_value);
+
+int print_env(void);
+
+char *_itoa(int n);
+
+int _atoi(char *s);
 
 #endif
