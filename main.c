@@ -4,13 +4,10 @@
  * main - creates a simple shell
  * @ac: argument count
  * @av: argument vectors
- * @env: environmental variables
  * Return: 0 on success
  */
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
-
-	prompt(env);
 
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
