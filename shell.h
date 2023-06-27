@@ -110,26 +110,21 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
-/*help functions*/
+/*loop*/
 
-int _strcmp(char *s1, char *s2);
-char *starts_with(const char *haystack, const char *needle);
-char *_strcat(char *dest, char *src);
-char *_strcpy(char *dest, char *src);
-char *_strdup(const char *str);
-void _puts(char *str);
-int _putchar(char c);
+int hsh(info_t *info, char **av);
+int find_builtin(info_t *info);
+void find_cmd(info_t *info);
+void fork_cmd(info_t *info);
 
+/*cmd*/
 
-/*builtin*/
+int is_cmd(info_t *info, char *path);
+char *dup_chars(char *pathstr, int start, int stop);
+char *find_path(info_t *info, char *pathstr, char *cmd);
 
-int _myexit(info_t *info);
-int _myhelp(info_t *info);
-int _myhistory(info_t *info);
-int unset_alias(info_t *info, char *str);
-int set_alias(info_t *info, char *str);
-int print_alias(list_t *node);
-int _myalias(info_t *info);
+/* loophsh.c */
+int loophsh(char **);
 
 /*errors*/
 
@@ -142,6 +137,46 @@ void print_error(info_t *info, char *estr);
 int print_d(int input, int fd);
 char *convert_number(long int num, int base, int flags);
 void remove_comments(char *buf);
+
+/*help functions*/
+
+int _strcmp(char *s1, char *s2);
+char *starts_with(const char *haystack, const char *needle);
+char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
+char *_strdup(const char *str);
+void _puts(char *str);
+int _putchar(char c);
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
+
+/*strtow*/
+
+char **strtow(char *str, char *d);
+char **strtow2(char *str, char d);
+
+/*realloc*/
+
+char *_memset(char *s, char b, unsigned int n);
+void ffree(char **pp);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
+/*free*/
+
+int bfree(void **ptr);
+
+
+/*builtin*/
+
+int _myexit(info_t *info);
+int _myhelp(info_t *info);
+int _myhistory(info_t *info);
+int unset_alias(info_t *info, char *str);
+int set_alias(info_t *info, char *str);
+int print_alias(list_t *node);
+int _myalias(info_t *info);
+
 
 /*handler*/
 
@@ -208,6 +243,9 @@ int _env(char **str, list_t *env);
 
 char *c_strdup(char *str, int cs);
 char *get_env(char *str, list_t *env);
+char **get_environ(info_t *info);
+int _unsetenv(info_t *info, char *var);
+int _setenv(info_t *info, char *var, char *value);
 
 /*prompt.c*/
 
@@ -223,10 +261,6 @@ int find_env(list_t *env, char *str);
 int _unsetenv(list_t **env, char **str);
 int _setenv(list_t **env, char **str);
 
-/*strtow*/
-
-char **strtow(char *str, char *d);
-char **strtow2(char *str, char d);
 
 /*history*/
 
@@ -236,15 +270,7 @@ int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 
-/*cmd*/
 
-int is_cmd(info_t *info, char *path);
-char *dup_chars(char *pathstr, int start, int stop);
-char *find_path(info_t *info, char *pathstr, char *cmd);
-
-/*free*/
-
-int bfree(void **ptr);
 
 /*info*/
 
@@ -252,18 +278,26 @@ void clear_info(info_t *info);
 void set_info(info_t *info, char **av);
 void free_info(info_t *info, int all);
 
-/*realloc*/
+/*prunt*/
 
-char *_memset(char *s, char b, unsigned int n);
-void ffree(char **pp);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int _myenv(info_t *info);
+char *_getenv(info_t *info, const char *name);
+int _mysetenv(info_t *info);
+int _myunsetenv(info_t *info);
+int populate_env_list(info_t *info);
 
-/*loop*/
+/*nodes*/
 
-int hsh(info_t *info, char **av);
-int find_builtin(info_t *info);
-void find_cmd(info_t *info);
-void fork_cmd(info_t *info);
+list_t *add_node(list_t **head, const char *str, int num);
+list_t *add_node_end(list_t **head, const char *str, int num);
+size_t print_list_str(const list_t *h);
+int delete_node_at_index(list_t **head, unsigned int index);
+void free_list(list_t **head_ptr);
+size_t list_len(const list_t *h);
+char **list_to_strings(list_t *head);
+size_t print_list(const list_t *h);
+list_t *node_starts_with(list_t *node, char *prefix, char c);
+ssize_t get_node_index(list_t *head, list_t *node);
 
 
 #endif
