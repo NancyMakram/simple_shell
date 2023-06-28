@@ -15,7 +15,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 1. Simple shell 0.1
 
@@ -63,7 +63,7 @@ execve will be the core part of your Shell, don’t forget to pass the environ t
 
 
 
-julien@ubuntu:~/shell$ ./shell 
+julien@ubuntu:~/shell$ ./shell
 
 #cisfun$ ls
 
@@ -106,7 +106,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 2. Simple shell 0.2
 
@@ -124,7 +124,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 3. Simple shell 0.3
 
@@ -152,7 +152,7 @@ barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  s
 
 env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     shell.c    stat.c  wait
 
-:) ls -l /tmp 
+:) ls -l /tmp
 
 total 20
 
@@ -168,7 +168,7 @@ drwx------ 3 root   root   4096 Dec  5 12:07 systemd-private-062a0eca7f2a4434973
 
 :) ^C
 
-julien@ubuntu:~/shell$ 
+julien@ubuntu:~/shell$
 
 Repo:
 
@@ -176,7 +176,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 4. Simple shell 0.4
 
@@ -198,7 +198,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 5. Simple shell 1.0
 
@@ -240,7 +240,7 @@ DISPLAY=:0
 
 $ exit
 
-julien@ubuntu:~/shell$ 
+julien@ubuntu:~/shell$
 
 Repo:
 
@@ -248,7 +248,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 6. Simple shell 0.1.1
 
@@ -278,7 +278,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 7. Simple shell 0.2.1
 
@@ -296,7 +296,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 8. Simple shell 0.4.1
 
@@ -318,7 +318,7 @@ julien@ubuntu:~/shell$ echo $?
 
 98
 
-julien@ubuntu:~/shell$ 
+julien@ubuntu:~/shell$
 
 Repo:
 
@@ -326,7 +326,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 9. setenv, unsetenv
 
@@ -362,7 +362,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 10. cd
 
@@ -396,7 +396,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 11. ;
 
@@ -444,7 +444,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 12. && and ||
 
@@ -526,7 +526,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 13. alias
 
@@ -552,7 +552,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 14. Variables
 
@@ -586,9 +586,9 @@ $ echo $PATH
 
 /home/julien/bin:/home/julien/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
-$ exit 
+$ exit
 
-julien@ubuntu:~/shell$ 
+julien@ubuntu:~/shell$
 
 Repo:
 
@@ -596,7 +596,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 15. Comments
 
@@ -616,7 +616,7 @@ $ echo $$ # ls -la
 
 $ exit
 
-julien@ubuntu:~/shell$ 
+julien@ubuntu:~/shell$
 
 Repo:
 
@@ -624,7 +624,7 @@ Repo:
 
 GitHub repository: simple_shell
 
-  
+
 
 16. File as input
 
